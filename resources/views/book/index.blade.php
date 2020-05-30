@@ -13,14 +13,14 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <h2 class="panel-heading">Product's</h2>
-                <a href="/product/create" class="btn btn-success"> + Create</a>
+                <a href="/book/create" class="btn btn-success"> + Create</a>
                 <div class="panel-body row">
                     @foreach($products as $product)
                         <div class="card col-md-4 p-2 m-3">
                             <div class="card-body">
-                                <h3 class="card-title">{{ $product->name }}</h3>
-                                <p class="card-text">цена: {{ $product->price }}</p>
-                                <a href="/product/{{ $product->id }}" class="btn btn-primary stretched-link">Просмотреть</a>
+                                <h3 class="card-title">{{ $book->name }}</h3>
+                                <p class="card-text">цена: {{ $book->price }}</p>
+                                <a href="/product/{{ $book->id }}" class="btn btn-primary stretched-link">Просмотреть</a>
                             </div>
                         </div>
                     @endforeach
