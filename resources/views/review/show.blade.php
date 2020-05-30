@@ -6,7 +6,7 @@
                 <h2 class="panel-heading py-2">Show review</h2>
                     <div class="card p-4">
                         <div class="col-md-12">
-                            <p>Отзыв о товаре <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></p>
+                            <p>Отзыв о товаре <a href="{{ route('book.show', $book->id) }}">{{ $book->name }}</a></p>
         					<h3>Оценка: {{ $review->rating }}</h3>
                             <h4>Текст: {{ $review->text }}</h4>
                         </div>

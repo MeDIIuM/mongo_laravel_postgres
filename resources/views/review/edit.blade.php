@@ -23,14 +23,10 @@
 			           		<div class="form-group">
 				            	<label for="name">Оценка</label>
 		                		<input type="text" name="rating" value="{{ $review->rating }}" class="form-control">
-		                	</div>				            
+		                	</div>
 				            <div class="form-group">
-				            	<label for="price">Текст</label>
+				            	<label for="text">Текст</label>
 				                <input type="text" name="text" value="{{ $review->text }}" class="form-control">
-				            </div>
-				            <div class="form-group">
-				            	<label for="price">Продукт</label>
-				                <input type="text" name="id_product" value="{{ $review->id_product }}" class="form-control">
 				            </div>
 				        </div>
 				        <button type="submit" name="submit" class="btn btn-primary">Обновить</button>

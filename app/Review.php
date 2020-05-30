@@ -2,18 +2,19 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Review extends Eloquent
 {
 	protected $primaryKey = '_id';
 
+	protected $connection = 'mongodb';
+
     protected $fillable = [
-        'rating', 'text', 'id_user', 'id_product'
+        'rating', 'text', 'id_book'
     ];
-    public function product()
+    public function book()
 	{
-	    return $this->belongsTo(Product::class, 'id_product');
+	    return $this->belongsTo(Book::class, 'id_book');
 	}
 }

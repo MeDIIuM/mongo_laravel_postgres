@@ -2,100 +2,101 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
-use App\Product;
 use App\Review;
 
-class ProductController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $products = Product::all();
-        return view('product.index',compact('products'));
+        $book = Book::all();
+        return view('book.index',compact('book'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        return view('product.create');
+        return view('book.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->name = $request->get('name');
-        $product->price = $request->get('price');
-        $product->save();
-        return redirect('product')->with('success','Product created successfully.');
+        $book = new Book();
+        $book->name = $request->get('name');
+        $book->author = $request->get('author');
+        $book->save();
+        return redirect('book')->with('success','Book created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param $id
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
-    	$product = Product::where('_id', $id)->first();
-        $reviews = $product->reviews;
-		return view('product.show', compact('product', 'id', 'reviews'));
+    	$book = Book::where('id', $id)->first();
+        $reviews = Review::where('id_book',$id)->get();
+		return view('book.show', compact('book', 'id', 'reviews'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  \App\Book  $book
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
-        $product = Product::where('_id', $id)->first();
-        return view('product.edit',compact('product','id'));
+        $book = Book::where('id', $id)->first();
+        return view('book.edit',compact('book','id'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  \App\Book  $book
+     * @return Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-		$product = Product::where('_id', $id)->first();
-        $product->name = $request->get('name');
-        $product->price = $request->get('price');
-        $product->save();
-		return redirect('product')->with('success', 'Product has been successfully update');
+		$book = Book::where('id', $id)->first();
+        $book->name = $request->get('name');
+        $book->author = $request->get('author');
+        $book->save();
+		return redirect('book')->with('success', 'Book has been successfully update');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  \App\Book  $book
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request, $id)
     {
-        $product = Product::where('_id', $id)->first();
-        $product->delete();
-        return redirect()->route('product.index')
-                        ->with('success','Product deleted successfully');
+        $book = Book::where('id', $id)->first();
+        $book->delete();
+        return redirect()->route('book.index')
+                        ->with('success','book deleted successfully');
     }
 }

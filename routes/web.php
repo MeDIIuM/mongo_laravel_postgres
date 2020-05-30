@@ -11,12 +11,15 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('home');
 });
 
-Route::post('/product/store', 'ProductController@store')->name('product_store');
-Route::resource('product', 'ProductController');
+Route::post('/book/store', 'BookController@store')->name('book_store');
+Route::resource('book', 'BookController');
 Route::post('/review/store/{id}', 'ReviewController@store')->name('review_store');
 Route::resource('review', 'ReviewController');
 

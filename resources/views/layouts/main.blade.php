@@ -9,9 +9,21 @@
 </head>
 
 <body>
-    @include('include.header')
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/book">Библиотека</a>
+            </li>
+            <li>
+                <a class="nav-link"  href="/review">Комментарии</a>
+            </li>
+            <li>
+                <a href="/book/create" class="btn btn-success">Добавить книгу</a>
+            </li>
+        </ul>
+    </div>
+</nav>
     @yield('content')
-    @include('include.footer')
-<script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
 </body>
 </html>

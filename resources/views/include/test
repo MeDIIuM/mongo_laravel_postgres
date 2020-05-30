@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/app.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все книги</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/book">Библиотека</a>
+            </li>
+            <li>
+                <a class="nav-link" href="/review">Комментарии</a>
+            </li>
+            <li>
+                <a href="/book/create" class="btn btn-success">Добавить книгу</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="col-md-8 offset-2">
+    </div>
+    <h3>Книги</h3>
+    <table class="table table-striped">
+        <thead>
+        <th>Название</th>
+        <th>Автор</th>
+        <th></th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Капитанская дочка</td>
+            <td>А. С. Пушкин</td>
+            <td><span><a href="/book/18" class="btn btn-primary stretched-link">Открыть</a></span></td>
+        </tr>
+        <tr>
+            <td>Преступление и наказание</td>
+            <td>Ф.М. Достоевский</td>
+            <td><span><a href="/book/19" class="btn btn-primary stretched-link">Открыть</a></span></td>
+        </tr>
+        <tr>
+            <td>Вий</td>
+            <td>Н.В. Гоголь</td>
+            <td><span><a href="/book/20" class="btn btn-primary stretched-link">Открыть</a></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer class="footer">
+</footer>
+<script src="/js/app.js" type="text/javascript"></script>
+</body>
+</html>
+

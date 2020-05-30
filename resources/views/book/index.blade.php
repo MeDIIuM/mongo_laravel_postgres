@@ -1,32 +1,32 @@
 @extends('layouts.main')
-@section('title')Все продукты@endsection
+@section('title')Все книги@endsection
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-2">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
-        </div>
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <h2 class="panel-heading">Product's</h2>
-                <a href="/book/create" class="btn btn-success"> + Create</a>
-                <div class="panel-body row">
-                    @foreach($products as $product)
-                        <div class="card col-md-4 p-2 m-3">
-                            <div class="card-body">
-                                <h3 class="card-title">{{ $book->name }}</h3>
-                                <p class="card-text">цена: {{ $book->price }}</p>
-                                <a href="/product/{{ $book->id }}" class="btn btn-primary stretched-link">Просмотреть</a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+    <div class="col-md-8 offset-2">
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
             </div>
-        </div>
+        @endif
     </div>
+    <h3>Книги</h3>
+    <table class="table table-striped">
+        <thead>
+            <th>Название</th>
+            <th>Автор</th>
+            <th></th>
+        </thead>
+        <tbody>
+        @foreach($book as $book)
+            <tr>
+                <td>{{ $book->name }}</td>
+                <td>{{ $book->author }}</td>
+                <td>
+                    <a href="/book/{{ $book->id }}" class="btn btn-primary">Открыть</a>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection

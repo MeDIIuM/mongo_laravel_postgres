@@ -12,8 +12,7 @@
         </div>
         <div class="col-md-12">
             <div class="panel panel-default">
-                <h2 class="panel-heading">Review's</h2>
-                <a href="/review/create" class="btn btn-success"> + Create</a>
+                <h2 class="panel-heading">Комментарии</h2>
                 <div class="panel-body row">
                     @foreach($reviews as $review)
                         <div class="card col-md-4 p-2 m-3">

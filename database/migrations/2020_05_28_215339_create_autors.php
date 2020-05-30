@@ -13,10 +13,12 @@ class CreateAutors extends Migration
      */
     public function up()
     {
-        Schema::create('autors', function (Blueprint $table) {
+        Schema::connection('pgsql')->create('books', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->string('name');
+            $table->string('author');
         });
+
     }
 
     /**

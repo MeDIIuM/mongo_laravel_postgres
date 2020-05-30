@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
 use App\Review;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -22,7 +22,7 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -32,37 +32,38 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request, $id)
-    {	
+    {
         $review = new Review();
         $review->text = $request->get('text');
         $review->rating = $request->get('rating');
-        $review->id_product = $id;
+        $review->id_book = $id;
 		$review->save();
-        return redirect('product')->with('success','Review created successfully.');
+        return redirect('book')->with('success','Review created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Review  $review
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
     	$review = Review::where('_id', $id)->first();
-    	$product = $review->product;
-		return view('review.show', compact('review', 'product', 'id'));
+    	$book = $review->book;
+		return view('review.show', compact('review', 'book', 'id'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Review  $review
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
@@ -76,7 +77,7 @@ class ReviewController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Review  $review
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
@@ -84,7 +85,7 @@ class ReviewController extends Controller
         $review->text = $request->get('text');
         $review->rating = $request->get('rating');
         $review->id_user = Auth::id();
-        $review->id_product = $request->get('id_product'); 
+        $review->id_book = $request->get('id_book');
         $review->save();
 		return redirect('review')->with('success', 'Review has been successfully update');
     }
@@ -92,10 +93,10 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Review  $review
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
         $review = Review::where('_id', $id)->first();
         $review->delete();
