@@ -29,7 +29,7 @@
                                 <button type="submit" name="submit" class="btn btn-primary">Отправить</button>
                             </form>
                         </div>
-                    <h3 class="py-2"> Отзывы о товаре </h3>
+                    <h3 class="py-2"> Комментарии о книге </h3>
                     <div class="p-3">
                         @foreach($reviews as $review)
                             <p
